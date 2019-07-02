@@ -4,9 +4,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<?php include 'pdo.php'; ?>
 <?php include 'header.php' ?>
-
             <hr>
 
             <!--<form method="post" action="index.php" class="form-horizontal">
@@ -115,36 +113,59 @@ and open the template in the editor.
                         <th>Firstname</th>
                         <th>Surname</th>
                         <th>Date of Birth</th>
+                        <th>Email</th>
+                        <th>Term</th>
                         <th>Computer Communication</th>
+                        <th>Computer System</th>
+                        <th>Web Development</th>                      
+                        <th>Software Engineering 1</th>
+                        <th>Problem Solving and Programming</th>
                         <th>Database-1</th>
-                        <th>Web Development</th>
-                        <th>Software Engineering</th>
-                        <th>Formal Specification of System Software</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                    
                     <tr>
-                        <td><?php echo $_POST['firstname']; ?></td>
-                        <td><?php echo $_POST['surname']; ?></td>
-                        <td><?php echo $_POST['dob']; ?></td>
+                        <?php
+                       $examQuery = $pdo->prepare('SELECT * from examdata');
+	$personalQuery = $pdo->prepare('SELECT * FROM personaldata WHERE id = :id');
+	$examQuery->execute();
+	
+	while ($exam = $examQuery->fetch()) {
+		$personalCriteria = [
+							'id' => $exam['pid']
+						];
+		$personalQuery->execute($personalCriteria);
+		$personal = $personalQuery->fetch();
+		 
+		
+	}
+	
                         
-                        <td><?php echo $_POST['marks1']; ?></td>
+                        //while ($s = $stmt->fetch()){
+                        echo '<td>' . $personal['firstname'] . '</td>' .
+                        '<td>' . $personal['surname'] . '</td>' .
+                        '<td>' . $personal['dob'] . '</td>' .
+                        '<td>' . $personal['email'] . '</td>' .
+                        '<td>' . $exam['term'] . '</td>' .        
+                        '<td>' . $exam['marks1'] . '</td>' .
+                        '<td>' . $exam['marks2'] . '</td>' .
+                        '<td>' . $exam['marks3'] . '</td>' .
+                        '<td>' . $exam['marks4'] . '</td>' .
+                        '<td>' . $exam['marks5'] . '</td>' .
+                        '<td>' . $exam['marks6'] . '</td>';
                         
-                        <td><?php echo $_POST['marks2']; ?></td>
-                        
-                        <td><?php echo $_POST['marks3']; ?></td>
-                        
-                        <td><?php echo $_POST['marks4']; ?></td>
-                        
-                        <td><?php echo $_POST['marks5']; ?></td>
+                       ?>
                         <td>
-                            <a href="edit.php" class="btn btn-info glyphicon glyphicon-pencil"></a>
-                            <a href="delete.php" class="btn btn-danger glyphicon glyphicon-trash"></a>
+                            <a href="" class="btn btn-success btn-xs" title="Edit">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </a>
+                            <a href="pdo.php?delete=<?php echo $row['id']?>" class="btn btn-danger btn-xs" title="Delete"
+                               onclick="return confirm('Are you sure to Delete ?');">
+                                <span class="glyphicon glyphicon-trash"></span></a>
                         </td>
-
                     </tr>
-
-
                 </tbody>
             </table>
-            <?php include 'footer.php' ?>
+            <?php include 'footer.php' ?>    
