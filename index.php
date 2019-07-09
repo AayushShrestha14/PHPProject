@@ -140,7 +140,7 @@ and open the template in the editor.
 		$personal = $personalQuery->fetch();
 		 
 		
-	}
+	
 	
                         
                         //while ($s = $stmt->fetch()){
@@ -166,6 +166,8 @@ and open the template in the editor.
                                 <span class="glyphicon glyphicon-trash"></span></a>
                         </td>
                     </tr>
+			<?php
+	}?>
                 </tbody>
             </table>
             <?php include 'footer.php'; ?>    
