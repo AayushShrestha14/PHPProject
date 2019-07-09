@@ -4,7 +4,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<?php include 'header.php' ?>
+<?php include 'header.php'; ?>
             <hr>
 
             <!--<form method="post" action="index.php" class="form-horizontal">
@@ -168,4 +168,4 @@ and open the template in the editor.
                     </tr>
                 </tbody>
             </table>
-            <?php include 'footer.php' ?>    
+            <?php include 'footer.php'; ?>    
