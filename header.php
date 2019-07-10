@@ -26,7 +26,8 @@
     </head>
     <body>
         <?php require_once 'delete.php'; ?>
-        <?php if (isset($_SESSION['message'])):
+        <?php
+        if (isset($_SESSION['message'])):
             ?>
             <div class="alert alert-<?= $_SESSION['msg-type'] ?>">
                 <?php

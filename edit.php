@@ -163,6 +163,7 @@ $row = $stmt->fetch();
     <div class="form-group"> 
         <div class="col-sm-offset-2 col-sm-10">
             <button type="submit" class="btn btn-info" name="edit">Edit</button>
+            <a href="index.php" name="cancel"><span class="btn btn-danger">Cancel</span></a>
         </div>
     </div>
 </form> 

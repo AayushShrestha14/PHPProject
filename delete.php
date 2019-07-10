@@ -5,11 +5,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-session_start();
-require 'pdo.php';
+
+include 'pdo.php';
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
-
+   
     $sql = "UPDATE examdata SET isdeleted=1 WHERE pid=$id";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
