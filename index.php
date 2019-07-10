@@ -5,8 +5,6 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <?php include 'header.php'; ?>
-            <hr>
-
             <!--<form method="post" action="index.php" class="form-horizontal">
                 <div class="form-group">
                     
@@ -98,14 +96,7 @@ and open the template in the editor.
                         <input type="text" placeholder="Marks5" name="marks5" class="form control"/> <br /></td>
                             </div></div>
                 <input type="submit" class="btn btn-primary"/>
-                
-                
-                    
-
-
             </form>-->
-
-
             <a href="add.php" class="btn btn-primary glyphicon glyphicon-plus pull-right"></a>
             <table class="table table-bordered">
                 <thead>
@@ -125,7 +116,6 @@ and open the template in the editor.
                     </tr>
                 </thead>
                 <tbody>
-                    
                     <tr>
                         <?php
                        $examQuery = $pdo->prepare('SELECT * from examdata');
@@ -134,16 +124,10 @@ and open the template in the editor.
 	
 	while ($exam = $examQuery->fetch()) {
 		$personalCriteria = [
-							'id' => $exam['pid']
-						];
+			'id' => $exam['pid']
+		];
 		$personalQuery->execute($personalCriteria);
 		$personal = $personalQuery->fetch();
-		 
-		
-	
-	
-                        
-                        //while ($s = $stmt->fetch()){
                         echo '<td>' . $personal['firstname'] . '</td>' .
                         '<td>' . $personal['surname'] . '</td>' .
                         '<td>' . $personal['dob'] . '</td>' .
@@ -154,8 +138,7 @@ and open the template in the editor.
                         '<td>' . $exam['marks3'] . '</td>' .
                         '<td>' . $exam['marks4'] . '</td>' .
                         '<td>' . $exam['marks5'] . '</td>' .
-                        '<td>' . $exam['marks6'] . '</td>';
-                        
+                        '<td>' . $exam['marks6'] . '</td>';        
                        ?>
                         <td>
                             <a href="" class="btn btn-success btn-xs" title="Edit">
