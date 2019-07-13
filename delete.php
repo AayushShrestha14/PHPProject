@@ -6,17 +6,18 @@
  * and open the template in the editor.
  */
 
-include 'pdo.php';
+include 'connection.php';
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
-   
-    $sql = "UPDATE examdata SET isdeleted=1 WHERE pid=$id";
-    $stmt = $pdo->prepare($sql);
+    $term = $_GET['term'];
+    
+    $sql = "UPDATE examdata SET isdeleted=1 WHERE pid=$id AND term=$term";
+    $stmt = $conn->prepare($sql);
     $stmt->execute();
 
     $_SESSION['message'] = "Record has been deleted successfully!";
     $_SESSION['msg_type'] = "danger";
-    
+
     header("location:index.php");
 }
 ?>
