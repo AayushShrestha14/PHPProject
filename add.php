@@ -51,20 +51,15 @@ include 'connection.php';
         <div class="col-sm-3"> 
             <select class="form-control" id="role" name="role">
                 <?php
-                //$result = $conn->query('SELECT * FROM role');
+                $result = $conn->query('SELECT * FROM role');
 
-                //while ($row = $result->fetch()) {
-                    //unset($id, $name);
-                    //$id = $row['id'];
-                    //$name = $row['name'];
-                    //echo $name;
-                    ?>
-                                        <option value="1">Admin</option>
-                                        <option value="2">Faculty</option>
-                                        <option value="3">Student</option>
-                    <?php
-                    //echo '<option value="' . $id . '">' . $name . '</option>';
-               // }
+                while ($row = $result->fetch()) {
+                    unset($id, $name);
+                    $id = $row['Roleid'];
+                    $name = $row['name'];
+                   
+                    echo '<option value="' . $id . '">' . $name . '</option>';
+               }
                 ?>
             </select>    
         </div>

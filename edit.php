@@ -105,22 +105,20 @@ $row = $stmt->fetch();
         <div class="col-sm-3"> 
             <select class="form-control" id="role" name="role">
                 <?php
-                //$result = $conn->query('SELECT * FROM role');
+                $result = $conn->query('SELECT * FROM role');
 
-                //while ($row = $result->fetch()) {
-                    //unset($id, $name);
-                    //$id = $row['id'];
-                    //$name = $row['name'];
-                    //echo $name;
-                    ?>
-                                        <option value="1" <?php if($roleid==1){?> selected <?php }?>>Admin</option>
-                                        <option value="2" <?php if($roleid==2){?> selected <?php }?>>Faculty</option>
-                                        <option value="3" <?php if($roleid==3){?> selected <?php }?>>Student</option>
-                    <?php
-                    //echo '<option value="' . $id . '">' . $name . '</option>';
-               // }
+                while ($row = $result->fetch()) {
+                    unset($id, $name);
+                    $id = $row['Roleid'];
+                    $name=$row['name'];
+                ?>                       
+                    <option value='<?php echo $id;?>' <?php if($roleid==$id){?> selected <?php }?>><?php echo $name; ?></option> 
+                <?php
+                
+                    }
                 ?>
-            </select>    
+
+}            </select>    
         </div>
     </div>
     <div class="form-group"> 
