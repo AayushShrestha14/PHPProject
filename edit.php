@@ -97,7 +97,8 @@ $row = $stmt->fetch();
     <div class="form-group">
         <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
         <div class="col-sm-3">
-            <input type="password" class="form-control" id="inputPassword3" placeholder="Password" name="password">
+            <input type="password" class="form-control" id="inputPassword3" placeholder="Password" 
+                   name="password">
         </div>
     </div>
     <div class="form-group">
@@ -112,9 +113,9 @@ $row = $stmt->fetch();
                     $id = $row['Roleid'];
                     $name=$row['name'];
                 ?>                       
-                    <option value='<?php echo $id;?>' <?php if($roleid==$id){?> selected <?php }?>><?php echo $name; ?></option> 
-                <?php
-                
+                    <option value='<?php echo $id;?>' <?php if($roleid==$id){?> selected <?php }?>>
+                        <?php echo $name; ?></option> 
+                <?php              
                     }
                 ?>
 
@@ -123,7 +124,7 @@ $row = $stmt->fetch();
     </div>
     <div class="form-group"> 
         <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-info" name="edit">Edit</button>
+            <button type="submit" class="btn btn-info" name="update">Update</button>
             <a href="index.php" name="cancel"><span class="btn btn-danger">Cancel</span></a>
         </div>
     </div>

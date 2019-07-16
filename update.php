@@ -7,7 +7,7 @@
  */
 include 'connection.php';
 
-if (isset($_POST['edit'])) {
+if (isset($_POST['update'])) {
 
     $sql = 'UPDATE personaldata SET firstname="' . $_POST['firstname'] . '",surname="' . $_POST['surname'] . '",'
             . 'dob="' . $_POST['dob'] . '",email="' . $_POST['email'] . '",RoleId="' . $_POST['role'].'" WHERE id=' . $_POST['id'];

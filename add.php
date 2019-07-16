@@ -47,6 +47,12 @@ include 'connection.php';
         </div>
     </div>
     <div class="form-group">
+        <label for="inputPassword3" class="col-sm-2 control-label">Verify Password</label>
+        <div class="col-sm-3">
+            <input type="password" class="form-control" id="inputPassword3" placeholder="Re-Enter Password" name="verifypassword">
+        </div>
+    </div>
+    <div class="form-group">
         <label class="control-label col-sm-2" for="role">Role</label>
         <div class="col-sm-3"> 
             <select class="form-control" id="role" name="role">
@@ -75,7 +81,7 @@ include 'connection.php';
     </div>
     <div class="form-group"> 
         <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-info" name="Add">Add</button>
+            <button type="submit" class="btn btn-info" name="Register">Register</button>
             <button type="submit" class="btn btn-info" name="save&continue">Save and Continue</button>
             <a href="index.php" name="cancel"><span class="btn btn-danger">Cancel</span></a>
         </div>
@@ -96,12 +102,12 @@ include 'connection.php';
       . 'VALUES ( :marks1, :marks2, :marks3, :marks4, :marks5, :marks6, :term) ');
       
      $cr = [
-      'computercommunication' => filter_input(INPUT_POST,'marks1'),
-      'computersystem' => filter_input(INPUT_POST,'marks2'),
-      'web1' => filter_input(INPUT_POST,'marks3'),
-      'softwareengineering1' => filter_input(INPUT_POST,'marks4'),
-      'problemsolving' => filter_input(INPUT_POST,'marks5'),
-      'database1' => filter_input(INPUT_POST,'marks6'),
+      'marks1' => filter_input(INPUT_POST,'marks1'),
+      'marks2' => filter_input(INPUT_POST,'marks2'),
+      'marks3' => filter_input(INPUT_POST,'marks3'),
+      'marks4' => filter_input(INPUT_POST,'marks4'),
+      'marks5' => filter_input(INPUT_POST,'marks5'),
+      'marks6' => filter_input(INPUT_POST,'marks6'),
       'term' => filter_input(INPUT_POST,'term')
       ];
 

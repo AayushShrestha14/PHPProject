@@ -34,4 +34,23 @@ include 'header.php';
         </div>
     </div>
 </form>
+<?php
+
+if (isset($_POST['login'])) {
+//    $sql = "SELECT email,password FROM personaldata";
+//    $stmt = $conn->prepare($sql);
+//    $stmt->execute();
+//
+//    while ($row = $stmt->fetch()) {
+//        
+//        if (($row['email'] == $_POST['email']) && ($row['password'] == $_POST['password'])) {
+//            $_SESSION['email']==$row['email'];
+            //echo $_SESSION['email'];
+        //}
+        //echo "Welcome " . "Your email address is " . $_SESSION['email'];
+    if($_POST['email']=='admin@gmail.com' && $_POST['password']=='admin'){
+        $_SESSION['loggedin']==$_POST['email'];
+    }
+}
+?>
 <?php include 'footer.php'; ?>

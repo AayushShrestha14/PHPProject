@@ -27,6 +27,12 @@ $(function () {
                 // by the built-in "email" rule
                 email: true
             },
+            password:{
+                required: true
+            },
+            verifypassword:{
+                required: true
+            },
             dob: {
                 required: true,
             },
@@ -96,6 +102,12 @@ $(function () {
                 required: 'Please enter an email address',
                 email: "Please enter a valid email address"
             },
+            password: {
+                required: 'Please enter a password'
+            },
+            verifypassword:{
+                required: 'Please Re-Enter password'
+            }
 //            marks1:"Enter your marks",
 //            marks2:"Enter your marks",
 //            marks3:"Enter your marks",
