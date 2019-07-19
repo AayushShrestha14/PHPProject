@@ -26,7 +26,8 @@ if (isset($_POST['Register'])) {
     $password=password_hash($_POST['password'],PASSWORD_DEFAULT);
     $repassword=$_POST['verifypassword'];
     $roleid=$_POST['role'];
-    if($password===$repassword){
+    
+        
     $ok = $conn->prepare("INSERT INTO personaldata (firstname, surname, dob, email,password,roleid) "
             . "VALUES ('$firstname','$surname','$dob','$email','$password','$roleid')");    
     $ok->execute();
@@ -45,7 +46,7 @@ if (isset($_POST['Register'])) {
     header("location:index.php");
     die();
     }
-}
+
 
 if (isset($_POST['save&continue'])) {
     if($password===$repassword){

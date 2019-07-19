@@ -8,23 +8,51 @@ include "connection.php";
  */
 ?>
 <div class="page-header">
-    <h1>Add Faculty</h1>
+    <h1>Edit Faculty</h1>
 </div>
-<form class="form-horizontal col-md-10" action="editfaculty.php"
-      method="post" name="studentdetails">
-    
+<?php
+$id = 0;
+$name = '';
+$facultyid='';
+$subjectid='';
+
+if (isset($_GET['editfaculty'])) {
+    $id = $_GET['editfaculty'];
+    //$subjectid=$_GET['id'];
+
+    $stmt = $conn->prepare("SELECT * FROM faculties WHERE id=$id");
+    $stmt->execute();
+    $row = $stmt->fetch();
+    $facultyid = $row['id'];
+    $name = $row['name'];
+
+    $stmt2 = $conn->prepare("SELECT subjectid FROM faculty_subject WHERE facultyid=$facultyid ");
+    $stmt2->execute();
+    $row2 = $stmt->fetch();
+    $subjectid = $row2['subjectid'];
+
+//    //$subjectid=$subject['id'];
+//    $stmt3 = $conn->prepare("SELECT * FROM subjects WHERE id=$subjectid");
+//    $stmt3->execute();
+//    $row3 = $stmt3->fetch();
+//    $subjectid = $row3['id'];
+//    $subjectname = $row3['name'];
+}
+?>
+
+<form class="form-horizontal col-md-10" action=""
+      method="post">
+    <input type="hidden" name="id" value="<?php echo $id; ?>" />
     <div class="form-group">
         <label class="control-label col-sm-2" for="facultyname">Faculty Name</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="facultyname" name="facultyname" 
+            <input type="text" class="form-control" id="facultyname" name="facultyname" value="<?php echo $name; ?>"
                    placeholder="Enter Faculty Name" ondrop="return false;" onpaste="return false;">        
         </div>
     </div>
-
     <div class="form-group"> 
         <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-info" name="addfaculty">Add Faculty</button>
-            <button type="submit" class="btn btn-info" name="save&continuefac">Save and Continue</button>
+            <button type="submit" class="btn btn-info" name="updatefaculty">Update Faculty</button>
             <a href="index.php" name="cancel"><span class="btn btn-danger">Cancel</span></a>
         </div>
     </div>
@@ -39,9 +67,11 @@ include "connection.php";
                     unset($id, $name);
                     $fid = $row['id'];
                     $name = $row['name'];
+                    
+                    ?>
 
-                    echo '<option value="' . $fid . '">' . $name . '</option>';
-                }
+                    <option value="<?php echo $fid; ?>"<?php if ($facultyid == $fid) { ?> selected <?php } ?>><?php echo $name; ?></option>
+                <?php }
                 ?>
             </select>    
         </div>
@@ -57,23 +87,24 @@ include "connection.php";
                     unset($id, $name);
                     $sid = $row['id'];
                     $name = $row['name'];
+                    ?>
 
-                    echo '<option value="' . $sid . '">' . $name . '</option>';
-                }
+                    <option value="<?php echo $sid; ?>"<?php if ($subjectid == $sid) { ?> selected <?php } ?>><?php echo $name ?></option>
+                <?php }
                 ?>
             </select>    
         </div>
     </div>
     <div class="form-group"> 
         <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-info" name="assignfaculty">Assign Faculty</button>
+            <button type="submit" class="btn btn-info" name="assignfacultyupdate">Assign Faculty</button>
             <button type="submit" class="btn btn-info" name="save&continuefacassign">Save and Continue</button>
             <a href="index.php" name="cancel"><span class="btn btn-danger">Cancel</span></a>
         </div>
     </div>
     <?php
-    if (isset($_POST['addfaculty'])) {
-        $sql = "INSERT INTO faculties (name) VALUES (:facultyname)";
+    if (isset($_POST['updatefaculty'])) {
+        $sql = "UPDATE faculties SET name=:facultyname WHERE id=:facultyid";
         $stmt = $conn->prepare($sql);
         $criteria = [
             'facultyname' => $_POST['facultyname']
@@ -82,19 +113,9 @@ include "connection.php";
         die();
         header("location:index.php");
     }
-    if (isset($_POST['save&continuefac'])) {
-        $sql = "INSERT INTO faculties (name) VALUES (:facultyname)";
-        $stmt = $conn->prepare($sql);
-        $criteria = [
-            'facultyname' => $_POST['facultyname']
-        ];
-        $stmt->execute($criteria);
-        die();
-        //header("location:index.php");
-    }
-    if (isset($_POST['assignfaculty'])) {
+    if (isset($_POST['assignfacultyupdate'])) {
 
-        $sql = "INSERT INTO faculty_subject (facultyid,subjectid) VALUES (:facultynamelist,:subject)";
+        $sql = "UPDATE faculty_subject SET facultyid=:facultynamelist,subjectid=:subject WHERE id=:facultynamelist";
         $stmt = $conn->prepare($sql);
         $criteria = [
             'facultynamelist' => $_POST['facultynamelist'],
@@ -142,18 +163,6 @@ include "connection.php";
                     $subjectQuery->execute();
 
                     $subject = $subjectQuery->fetch();
-                    //echo $faculty['name'];
-//            $facultyQuery = $conn->prepare('SELECT name FROM faculties');
-//            $subjectQuery = $conn->prepare('SELECT name FROM subjects WHERE id = :subjectid');
-//            $facultyQuery->execute();
-//
-//            while ($faculty = $facultyQuery->fetch()) {
-//                $subjectCriteria = [
-//                    'id' => $faculty['id']
-//                ];
-//                $subjectQuery->execute($subjectCriteria);
-//                $subject = $subjectQuery->fetch();
-
 
                     echo '<td>' . $faculty['name'] . '</td>' .
                     '<td>' . $subject['name'] . '</td>';

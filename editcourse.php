@@ -8,7 +8,7 @@ include "connection.php";
  */
 ?>
 <div class="page-header">
-    <h1>Add Course</h1>
+    <h1>Edit Course</h1>
 </div>
 <form class="form-horizontal col-md-10" action=""
       method="post" name="studentdetails">
@@ -21,8 +21,7 @@ include "connection.php";
     </div>
     <div class="form-group"> 
         <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-info" name="addcourse">Add Course</button>
-            <button type="submit" class="btn btn-info" name="save&continuecourse">Save and Continue</button>
+            <button type="submit" class="btn btn-info" name="addcourse">Update Course</button>
             <a href="index.php" name="cancel"><span class="btn btn-danger">Cancel</span></a>
         </div>
     </div>

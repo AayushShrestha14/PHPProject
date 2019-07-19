@@ -36,16 +36,7 @@ include "connection.php";
         </div>
     </div>
     <div class="form-group">
-                <label class="control-label col-sm-2" for="practicalmarks"> If Practical Marks</label>
- 
-         <div class="col-sm-10">
-            <input type="radio" class="form-control" id="practicalmarks" name="practicalmarks" value="yes">Yes
-            <input type="radio" class="form-control" id="practicalmarks" name="practicalmarks" value="no" onclick="hidepracticalmarks()">No
-        </div>  
-    </div>
-    <div class="form-group" id="practicalmarks">
         <label class="control-label col-sm-2" for="practicalmarks">Practical Marks</label>
-         
         <div class="col-sm-10">
             <input type="number" class="form-control" id="practicalmarks" name="practicalmarks" placeholder="Enter Practical Marks" 
                    min='0' max='100' ondrop="return false;" onpaste="return false;" 
