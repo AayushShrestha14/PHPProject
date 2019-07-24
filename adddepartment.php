@@ -92,6 +92,7 @@ include "connection.php";
             <a href="index.php" name="cancel"><span class="btn btn-danger">Cancel</span></a>
         </div>
     </div>
+</form>
     <?php
     if (isset($_POST['assigndepartment'])) {
 
@@ -134,38 +135,26 @@ include "connection.php";
 
                 foreach ($department_courseQuery as $row) {
                     $departmentid = $row['deptid'];
-                    $departmentQuery = $conn->prepare("SELECT * FROM department WHERE Deptid='$departmentid'");
+                    $departmentQuery = $conn->prepare("SELECT * FROM department WHERE Deptid=$departmentid");
                     $departmentQuery->execute();
                     $department = $departmentQuery->fetch();
 
                     $courseid = $row['courseid'];
-                    $courseQuery = $conn->prepare("SELECT * FROM course WHERE Courseid='$courseid'");
+                    $courseQuery = $conn->prepare("SELECT * FROM course WHERE Courseid=$courseid");
                     $courseQuery->execute();
 
                     $course = $courseQuery->fetch();
-                    //echo $department['name'];
-//            $departmentQuery = $conn->prepare('SELECT name FROM faculties');
-//            $courseQuery = $conn->prepare('SELECT name FROM courses WHERE id = :courseid');
-//            $departmentQuery->execute();
-//
-//            while ($department = $departmentQuery->fetch()) {
-//                $courseCriteria = [
-//                    'id' => $department['id']
-//                ];
-//                $courseQuery->execute($courseCriteria);
-//                $course = $courseQuery->fetch();
-
-
+     
                     echo '<td>' . $department['name'] . '</td>' .
                     '<td>' . $course['name'] . '</td>';
                     
                     ?>
                 
                     <td>
-                        <a href="editdepartment.php?edit=<?php echo $department['id']; ?>" class="btn btn-success btn-xs" title="Edit">
+                        <a href="editdepartment.php?editdepartment=<?php echo $department['Deptid']; ?>&course=<?php echo $course['Courseid']; ?>&id=<?php echo $row['id']; ?>" class="btn btn-success btn-xs" title="Edit">
                             <span class="glyphicon glyphicon-pencil"></span>
                         </a>
-                        <a href="deletedepartment.php?delete=<?php echo $personal['id'] ?>&term=<?php echo $exam['term']; ?>" class="btn btn-danger btn-xs" title="Delete"
+                        <a href="deletedepartment.php?deletedepartment=<?php echo $department['Deptid'] ?>&course=<?php echo $course['Courseid']; ?>&id=<?php echo $row['id']; ?>" class="btn btn-danger btn-xs" title="Delete"
                            onclick="return confirm('Are you sure to Delete ?');">
                             <span class="glyphicon glyphicon-trash"></span></a>
                     </td>

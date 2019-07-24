@@ -74,6 +74,7 @@ include "connection.php";
             <a href="index.php" name="cancel"><span class="btn btn-danger">Cancel</span></a>
         </div>
     </div>
+</form>
     <?php
     if(isset($_POST['addsubject'])){
     //$name=$_POST['subjectname'];

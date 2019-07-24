@@ -49,7 +49,9 @@ if (isset($_POST['login'])) {
         //}
         //echo "Welcome " . "Your email address is " . $_SESSION['email'];
     if($_POST['email']=='admin@gmail.com' && $_POST['password']=='admin'){
-        $_SESSION['loggedin']==$_POST['email'];
+        
+        $_SESSION["loggedin"]==$_POST['email'];
+        echo 'You have logged in successfully';
     }
 }
 ?>

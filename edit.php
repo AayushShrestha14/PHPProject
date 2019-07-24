@@ -18,7 +18,7 @@ $roleid = '';
 if (isset($_GET['edit'])) {
     $id = $_GET['edit'];
     $term = $_GET['term'];
-
+    
     // $result=$conn->query("SELECT * FROM personaldata WHERE id=$id");
     $stmt = $conn->prepare("SELECT * FROM personaldata WHERE id=$id");
     $stmt->execute();
@@ -127,4 +127,6 @@ if (isset($_GET['edit'])) {
         </div>
     </div>
 </form> 
-<?php include 'footer.php'; ?>
+<?php 
+include 'footer.php'; 
+?>

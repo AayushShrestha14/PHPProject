@@ -7,14 +7,14 @@
  */
 
 include 'connection.php';
-if (isset($_GET['deletefaculty'])) {
-    $id = $_GET['deletefaculty'];
+if (isset($_GET['deletedepartment'])) {
+    $id = $_GET['deletedepartment'];
     
-    $sql = "UPDATE faculties SET isdeleted=1 WHERE id=$id";
+    $sql = "UPDATE department SET isdeleted=1 WHERE id=$id";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
 
-    $sql = "UPDATE faculty_subject SET isdeleted=1 WHERE facultyid=$id";
+    $sql = "UPDATE department_course SET isdeleted=1 WHERE deptid=$id";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
 

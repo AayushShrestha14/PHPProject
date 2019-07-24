@@ -69,6 +69,7 @@ include "connection.php";
             <a href="index.php" name="cancel"><span class="btn btn-danger">Cancel</span></a>
         </div>
     </div>
+</form>
     <?php
     if (isset($_POST['addcourse'])) {
         $sql = "INSERT INTO course (name) VALUES (:coursename)";
@@ -77,8 +78,8 @@ include "connection.php";
             'coursename' => $_POST['coursename']
         ];
         $stmt->execute($criteria);
-        die();
-        //header("location:index.php");
+        //die();
+        header("location:index.php");
     }
     if (isset($_POST['save&continuecourse'])) {
         $sql = "INSERT INTO course (name) VALUES (:coursename)";
@@ -157,10 +158,10 @@ include "connection.php";
                     '<td>' . $subject['name'] . '</td>';
                     ?>
                     <td>
-                        <a href="edit.php?edit=<?php echo $personal['id']; ?>&term=<?php echo $exam['term']; ?>" class="btn btn-success btn-xs" title="Edit">
+                        <a href="editcourse.php?editcourse=<?php echo $course['Courseid']; ?>&subject=<?php echo $subject['id']; ?>&id=<?php echo $row['id']; ?>" class="btn btn-success btn-xs" title="Edit">
                             <span class="glyphicon glyphicon-pencil"></span>
                         </a>
-                        <a href="delete.php?delete=<?php echo $personal['id'] ?>&term=<?php echo $exam['term']; ?>" class="btn btn-danger btn-xs" title="Delete"
+                        <a href="deletecourse.php?deletecourse=<?php echo $course['Courseid'] ?>&subject=<?php echo $subject['id']; ?>&id=<?php echo $row['id']; ?>" class="btn btn-danger btn-xs" title="Delete"
                            onclick="return confirm('Are you sure to Delete ?');">
                             <span class="glyphicon glyphicon-trash"></span></a>
                     </td>
