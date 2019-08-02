@@ -25,19 +25,19 @@
         </style>
     </head>
     <body>
-        <?php require_once 'delete.php'; ?>
+        <?php //require_once 'delete.php'; ?>
         <?php
-        if (isset($_SESSION['message'])):
+//        if (isset($_SESSION['message'])):
             ?>
-            <div class="alert alert-<?= $_SESSION['msg-type'] ?>">
+            <!--<div class="alert alert-<?php //$_SESSION['msg-type'] ?>">
                 <?php
-                echo $_SESSION['message'];
-                unset($_SESSION['message']);
+//                echo $_SESSION['message'];
+//                unset($_SESSION['message']);
                 ?>
-            </div>
+            </div>-->
             <?php
-        endif
-        ?>
+//        endif
+       ?>
         <div class="container">
             <?php include 'nav.php'; ?>
             <main>

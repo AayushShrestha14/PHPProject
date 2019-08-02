@@ -15,7 +15,6 @@ if (isset($_POST['updatefaculty'])) {
         'facultyname' => $_POST['facultyname']
     ];
     $stmt->execute($criteria);
-    die();
-    header("location:editfaculty.php");
+    header("location:indexfaculty.php");
 }
 ?>

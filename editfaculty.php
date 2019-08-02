@@ -87,8 +87,7 @@ if (isset($_GET['editfaculty'])) {
     <div class="form-group"> 
         <div class="col-sm-offset-2 col-sm-10">
             <button type="submit" class="btn btn-info" name="assignfacultyupdate">Assign Faculty</button>
-            <button type="submit" class="btn btn-info" name="save&continuefacassignupdate">Save and Continue</button>
-            <a href="index.php" name="cancel"><span class="btn btn-danger">Cancel</span></a>
+            <a href="indexfaculty.php" name="cancel"><span class="btn btn-danger">Cancel</span></a>
         </div>
     </div>
 </form>
@@ -115,17 +114,6 @@ if (isset($_POST['assignfacultyupdate'])) {
     $stmt->execute($criteria);
     //die();
     //header("location:index.php");
-}
-if (isset($_POST['save&continuefacassignupdate'])) {
-    $sql = "UPDATE faculty_subject SET facultyid=:facultynamelist,subjectid=:subject WHERE facultyid=:facultynamelist";
-    $stmt = $conn->prepare($sql);
-    $criteria = [
-        'facultynamelist' => $_POST['facultynamelist'],
-        'subject' => $_POST['subject']
-    ];
-    $stmt->execute($criteria);
-    // die();
-    //header("location:editfaculty.php");
 }
 ?>
 

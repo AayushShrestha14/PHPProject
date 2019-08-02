@@ -44,7 +44,7 @@ if (isset($_GET['editdepartment'])) {
     <div class="form-group"> 
         <div class="col-sm-offset-2 col-sm-10">
             <button type="submit" class="btn btn-info" name="updatedepartment">Update Department</button>
-            <a href="index.php" name="cancel"><span class="btn btn-danger">Cancel</span></a>
+            <a href="indexdepartment.php" name="cancel"><span class="btn btn-danger">Cancel</span></a>
         </div>
     </div>
     <div class="form-group">
@@ -87,8 +87,7 @@ if (isset($_GET['editdepartment'])) {
     <div class="form-group"> 
         <div class="col-sm-offset-2 col-sm-10">
             <button type="submit" class="btn btn-info" name="assigndepartmentupdate">Assign Department</button>
-            <button type="submit" class="btn btn-info" name="save&continuefacassignupdate">Save and Continue</button>
-            <a href="index.php" name="cancel"><span class="btn btn-danger">Cancel</span></a>
+            <a href="adddepartment.php" name="cancel"><span class="btn btn-danger">Cancel</span></a>
         </div>
     </div>
 </form>
@@ -115,17 +114,6 @@ if (isset($_POST['assigndepartmentupdate'])) {
     $stmt->execute($criteria);
     //die();
     //header("location:index.php");
-}
-if (isset($_POST['save&continuefacassignupdate'])) {
-    $sql = "UPDATE department_course SET departmentid=:departmentnamelist,courseid=:course WHERE departmentid=:departmentnamelist";
-    $stmt = $conn->prepare($sql);
-    $criteria = [
-        'departmentnamelist' => $_POST['departmentnamelist'],
-        'course' => $_POST['course']
-    ];
-    $stmt->execute($criteria);
-    // die();
-    //header("location:editdepartment.php");
 }
 ?>
 

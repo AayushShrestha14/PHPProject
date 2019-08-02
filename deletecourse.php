@@ -7,21 +7,21 @@
  */
 
 include 'connection.php';
-if (isset($_GET['deletedepartment'])) {
-    $id = $_GET['deletedepartment'];
-    $courseid=$_GET['course'];
+if (isset($_GET['deletecourse'])) {
+    $id = $_GET['deletecourse'];
+    $subjectid=$_GET['subject'];
     
-    $sql = "UPDATE department SET isdeleted=1 WHERE id=$id";
+    $sql = "UPDATE course SET isdeleted=1 WHERE id=$id";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
 
-    $sql = "UPDATE department_course SET isdeleted=1 WHERE deptid=$id AND courseid=$courseid";
+    $sql = "UPDATE course_subject SET isdeleted=1 WHERE courseid=$id AND subjectid=$subjectid";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
 
     $_SESSION['message'] = "Record has been deleted successfully!";
     $_SESSION['msg_type'] = "danger";
 
-    header("location:addfaculty.php");
+    header("location:indexcourse.php");
 }
 ?>

@@ -39,11 +39,11 @@ include "connection.php";
                 <label class="control-label col-sm-2" for="practicalmarks"> If Practical Marks</label>
  
          <div class="col-sm-10">
-            <input type="radio" class="form-control" id="practicalmarks" name="practicalmarks" value="yes">Yes
-            <input type="radio" class="form-control" id="practicalmarks" name="practicalmarks" value="no" onclick="hidepracticalmarks()">No
+            <input type="radio" class="form-control" id="practicalmarksyes" name="ifpracticalmarks" value="yes" onclick="hidepracticalmarks('yes')" checked>Yes
+            <input type="radio" class="form-control" id="practicalmarksno" name="ifpracticalmarks" value="no" onclick="hidepracticalmarks('no')" >No
         </div>  
     </div>
-    <div class="form-group" id="practicalmarks">
+    <div class="form-group" id="practicalmarksblock">
         <label class="control-label col-sm-2" for="practicalmarks">Practical Marks</label>
          
         <div class="col-sm-10">

@@ -87,8 +87,7 @@ if (isset($_GET['editsubject'])) {
         <div class="form-group"> 
             <div class="col-sm-offset-2 col-sm-10">
                 <button type="submit" class="btn btn-info" name="updatesubject">Update Subject</button>
-                <button type="submit" class="btn btn-info" name="save&continuesubupdate">Save and Continue</button>
-                <a href="index.php" name="cancel"><span class="btn btn-danger">Cancel</span></a>
+                <a href="indexsubject.php" name="cancel"><span class="btn btn-danger">Cancel</span></a>
             </div>
         </div>
 </form>
@@ -96,8 +95,8 @@ if (isset($_GET['editsubject'])) {
 if (isset($_POST['addsubject'])) {
     //$name=$_POST['subjectname'];
 
-    $sql = "INSERT INTO subjects (name,FullMarks,PassMarks,Practical,Viva,Remarks) "
-            . "VALUES (:subjectname,:fullmarks,:passmarks,:practicalmarks,:vivamarks,:remarks)";
+    $sql = "UPDATE subjects SET name=:subjectname,FullMarks=:fullmarks,PassMarks=:passmarks,"
+            . "Practical=:practicalmarks,Viva=:vivamarks,Remarks=:remarks WHERE id=$id";
     $criteria = [
         'subjectname' => $_POST['subjectname'],
         'fullmarks' => $_POST['fullmarks'],
@@ -110,22 +109,6 @@ if (isset($_POST['addsubject'])) {
     $stmt->execute($criteria);
     die();
     header("location:index.php");
-}
-if (isset($_POST['save&continuesub'])) {
-    $sql = "INSERT INTO subjects (name,FullMarks,PassMarks,Practical,Viva,Remarks) "
-            . "VALUES (:subjectname,:fullmarks,:passmarks,:practicalmarks,:vivamarks,:remarks)";
-    $criteria = [
-        'subjectname' => $_POST['subjectname'],
-        'fullmarks' => $_POST['fullmarks'],
-        'passmarks' => $_POST['passmarks'],
-        'practicalmarks' => $_POST['practicalmarks'],
-        'vivamarks' => $_POST['vivamarks'],
-        'remarks' => $_POST['remarks'],
-    ];
-    $stmt = $conn->prepare($sql);
-    $stmt->execute($criteria);
-    die();
-    //header("location:index.php");
 }
 ?>
 <?php

@@ -1,7 +1,7 @@
 <?php
 include 'header.php';
 
-/* 
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -9,7 +9,7 @@ include 'header.php';
 ?>
 <form class="form-horizontal col-md-10" action=""
       method="post" name="studentdetails">
-<div class="form-group">
+    <div class="form-group">
         <label class="control-label col-sm-2" for="term">Term</label>
         <div class="col-sm-10"> 
             <select class="form-control" id="term" name="term">
@@ -66,7 +66,7 @@ include 'header.php';
                    onkeypress='return event.charCode >= 48 && event.charCode <= 57'>           
         </div>
     </div>
-<div class="form-group"> 
+    <div class="form-group"> 
         <div class="col-sm-offset-2 col-sm-10">
             <button type="submit" class="btn btn-info" name="Add">Add</button>
             <button type="submit" class="btn btn-info" name="save&continue">Save and Continue</button>
@@ -74,6 +74,6 @@ include 'header.php';
         </div>
     </div>
 </form>
-<?php 
+<?php
 include 'footer.php';
 ?>

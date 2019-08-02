@@ -78,7 +78,6 @@ include "connection.php";
             'coursename' => $_POST['coursename']
         ];
         $stmt->execute($criteria);
-        //die();
         header("location:index.php");
     }
     if (isset($_POST['save&continuecourse'])) {
@@ -88,8 +87,8 @@ include "connection.php";
         ];
         $stmt = $conn->prepare($sql);
         $stmt->execute($criteria);
-        die();
-        //header("location:index.php");
+        
+        header("location:addcourse.php");
     }
     if (isset($_POST['assigncourse'])) {
 
@@ -101,7 +100,7 @@ include "connection.php";
         ];
         $stmt->execute($criteria);
         //header("location:index.php");
-        die();
+        
     }
     if (isset($_POST['save&continuecourseassign'])) {
         $sql = "INSERT INTO course_subject (courseid,subjectid) VALUES (:coursenamelist,:subject)";
@@ -111,8 +110,8 @@ include "connection.php";
             'subject' => $_POST['subject']
         ];
         $stmt->execute($criteria);
-        die();
-        //header("location:index.php");
+       
+        //header("location:addcourse.php");
     }
     ?>
     <table class="table table-bordered">
@@ -126,7 +125,7 @@ include "connection.php";
         <tbody>
             <tr>
                 <?php
-                $course_subjectQuery = $conn->prepare('SELECT * FROM course_subject');
+                $course_subjectQuery = $conn->prepare('SELECT * FROM course_subject WHERE isdeleted=0');
                 $course_subjectQuery->execute();
 
 

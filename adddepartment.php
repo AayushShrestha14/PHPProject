@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "header.php";
 include "connection.php";
 /*
@@ -35,8 +36,8 @@ include "connection.php";
             'departmentname' => $_POST['departmentname']
         ];
         $stmt->execute($criteria);
-        die();
-        //header("location:index.php");
+        
+        header("location:index.php");
     }
     if (isset($_POST['save&continuedept'])) {
         $sql = "INSERT INTO department (name) VALUES (:departmentname)";
@@ -45,8 +46,8 @@ include "connection.php";
             'departmentname' => $_POST['departmentname']
         ];
         $stmt->execute($criteria);
-        die();
-        //header("location:index.php");
+        
+        header("location:adddepartment.php");
     }
     ?>
     <div class="form-group">
@@ -103,8 +104,8 @@ include "connection.php";
             'course' => $_POST['course']
         ];
         $stmt->execute($criteria);
-        //die();
-        //sheader("location:index.php");
+        
+        header("location:index.php");
     }
     if (isset($_POST['save&continuedeptassign'])) {
         $sql = "INSERT INTO department_course (deptid,courseid) VALUES (:departmentnamelist,:course)";
@@ -114,8 +115,8 @@ include "connection.php";
             'course' => $_POST['course']
         ];
         $stmt->execute($criteria);
-        //die();
-        //header("location:index.php");
+        
+        header("location:adddepartment.php");
     }
     ?>
     <table class="table table-bordered">
@@ -129,7 +130,7 @@ include "connection.php";
         <tbody>
             <tr>
                 <?php
-                $department_courseQuery = $conn->prepare('SELECT * FROM department_course');
+                $department_courseQuery = $conn->prepare('SELECT * FROM department_course WHERE isdeleted=0');
                 $department_courseQuery->execute();
 
 

@@ -9,18 +9,19 @@
 include 'connection.php';
 if (isset($_GET['deletefaculty'])) {
     $id = $_GET['deletefaculty'];
+    $subjectid=$_GET['subject'];
     
     $sql = "UPDATE faculties SET isdeleted=1 WHERE id=$id";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
 
-    $sql = "UPDATE faculty_subject SET isdeleted=1 WHERE facultyid=$id";
+    $sql = "UPDATE faculty_subject SET isdeleted=1 WHERE facultyid=$id AND subjectid=$subjectid";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
 
     $_SESSION['message'] = "Record has been deleted successfully!";
     $_SESSION['msg_type'] = "danger";
 
-    header("location:addfaculty.php");
+    header("location:indexfaculty.php");
 }
 ?>

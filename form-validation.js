@@ -124,11 +124,14 @@ $(function () {
     });
 });
 
-function hidepracticalmarks() {
-  var x = document.getElementById("practicalmarkstext");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
+function hidepracticalmarks(n) {
+  //var x = document.getElementsByClassName("practicalmarkstext").attr('value');
+var x=n;//$( this ).val();
+
+  if (x=='yes'){
+     $("#practicalmarksblock").removeClass("hidden");
+  }
+   if (x=='no'){
+     $("#practicalmarksblock").addClass("hidden");
   }
 } 

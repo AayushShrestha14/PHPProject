@@ -85,8 +85,7 @@ if (isset($_GET['editcourse'])) {
     <div class="form-group"> 
         <div class="col-sm-offset-2 col-sm-10">
             <button type="submit" class="btn btn-info" name="assigncourseupdate">Assign Course</button>
-            <button type="submit" class="btn btn-info" name="save&continuecourseassignupdate">Save and Continue</button>
-            <a href="index.php" name="cancel"><span class="btn btn-danger">Cancel</span></a>
+            <a href="indexcourse.php" name="cancel"><span class="btn btn-danger">Cancel</span></a>
         </div>
     </div>
 </form>
@@ -113,17 +112,7 @@ if (isset($_POST['assigncourseupdate'])) {
     //header("location:index.php");
     //die();
 }
-if (isset($_POST['save&continuecourseassignupdate'])) {
-    $sql = "UPDATE course_subject courseid=:coursenamelist,subjectid=:subject WHERE courseid=:coursenamelist";
-    $stmt = $conn->prepare($sql);
-    $criteria = [
-        'coursenamelist' => $_POST['coursenamelist'],
-        'subject' => $_POST['subject']
-    ];
-    $stmt->execute($criteria);
-    die();
-    header("location:editcourse.php");
-}
+
 ?>
 <table class="table table-bordered">
     <thead>
@@ -168,10 +157,10 @@ if (isset($_POST['save&continuecourseassignupdate'])) {
                 '<td>' . $subject['name'] . '</td>';
                 ?>
                 <td>
-                    <a href="editcourse.php?editcourse=<?php echo $course['Courseid']; ?>&subject=<?php echo $subject['id']; ?>&id=<?php echo $row['id']; ?>" class="btn btn-success btn-xs" title="Edit">
+                    <a href="editcourse.php?editcourse=<?php echo $course['Courseid']; ?>&subject=<?php echo $subject['id']; ?>" class="btn btn-success btn-xs" title="Edit">
                         <span class="glyphicon glyphicon-pencil"></span>
                     </a>
-                    <a href="deletecourse.php?deletecourse=<?php echo $course['Courseid'] ?>&subject=<?php echo $subject['id']; ?>&id=<?php echo $row['id']; ?>" class="btn btn-danger btn-xs" title="Delete"
+                    <a href="deletecourse.php?deletecourse=<?php echo $course['Courseid'] ?>&subject=<?php echo $subject['id']; ?>" class="btn btn-danger btn-xs" title="Delete"
                        onclick="return confirm('Are you sure to Delete ?');">
                         <span class="glyphicon glyphicon-trash"></span></a>
                 </td>
