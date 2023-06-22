@@ -4,20 +4,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-include 'header.php';
+include 'shared/header.php';
+include 'admin/connection.php';
 ?>
 <?php
-$id = 0;
-$firstname = '';
+$id = '';
+$first_name = '';
 $surname = '';
 $dob = '';
 $email = '';
-$roleid = '';
+$courseId = '';
 
 
 if (isset($_GET['edit'])) {
     $id = $_GET['edit'];
-    $term = $_GET['term'];
     
     // $result=$conn->query("SELECT * FROM personaldata WHERE id=$id");
     $stmt = $conn->prepare("SELECT * FROM personaldata WHERE id=$id");
@@ -28,12 +28,11 @@ if (isset($_GET['edit'])) {
 //check number of rows of result
     //if (($number_of_rows)>0){
 
-    $firstname = $row['firstname'];
+    $first_name = $row['first_name'];
     $surname = $row['surname'];
     $dob = $row['dob'];
     $email = $row['email'];
-    $password = $row['password'];
-    $roleid = $row['RoleId'];
+    $courseId = $row['course_id'];
 
     //}
     //$result1=$conn->query("SELECT * FROM examdata WHERE pid=$id AND term=$term");
@@ -63,7 +62,7 @@ if (isset($_GET['edit'])) {
         <label class="control-label col-sm-2" for="firstname">First Name</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="firstname" name="firstname" 
-                   placeholder="Enter your First Name" value="<?php echo $firstname; ?>" 
+                   placeholder="Enter your First Name" value="<?php echo $first_name; ?>" 
                    ondrop="return false;" onpaste="return false;">         
         </div>
     </div>
@@ -93,25 +92,19 @@ if (isset($_GET['edit'])) {
         </div>
     </div>
     <div class="form-group">
-        <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-        <div class="col-sm-3">
-            <input type="password" class="form-control" id="inputPassword3" placeholder="Password" 
-                   name="password">
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="control-label col-sm-2" for="role">Role</label>
+        <label class="control-label col-sm-2" for="course">Course</label>
         <div class="col-sm-3"> 
-            <select class="form-control" id="role" name="role">
+            <select class="form-control" id="course" name="course">
+            <option value="">Select Course</option>
                 <?php
-                $result = $conn->query('SELECT * FROM role');
+                $result = $conn->query('SELECT * FROM courses WHERE is_deleted=false');
 
                 while ($row = $result->fetch()) {
                     unset($id, $name);
-                    $id = $row['Roleid'];
+                    $id = $row['id'];
                     $name = $row['name'];
                     ?>                       
-                    <option value="<?php echo $id; ?>"<?php if ($roleid == $id) { ?> selected <?php } ?>>
+                    <option value="<?php echo $id; ?>" <?php if ($courseId == $id) { ?>selected<?php } ?>>
                         <?php echo $name; ?></option> 
                     <?php
                 }
@@ -128,5 +121,5 @@ if (isset($_GET['edit'])) {
     </div>
 </form> 
 <?php 
-include 'footer.php'; 
+include 'shared/footer.php'; 
 ?>

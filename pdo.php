@@ -27,7 +27,7 @@ if (isset($_POST['Add'])) {
     $last_id = $pdo->lastInsertId();
     
     $ok = $pdo->query('INSERT INTO examdata (computercommunication,computersystem,web1,'
-            . 'softwareengineering1,problemsolving,database1,term,pid)'
+            . 'softwareengineering1,problemsolving,database1,term,p_id)'
             . 'VALUES ("' . $_POST['marks1'] . '","' . $_POST['marks2'] . '",'
             . '"' . $_POST['marks3'] . '","' . $_POST['marks4'] . '",'
             . '"' . $_POST['marks5'] . '","' . $_POST['marks6'] . '"'
@@ -49,7 +49,7 @@ if (isset($_POST['save&continue'])) {
     $last_id = $pdo->lastInsertId();
     
     $ok = $pdo->query('INSERT INTO examdata (computercommunication,computersystem,web1,'
-            . 'softwareengineering1,problemsolving,database1,term,pid)'
+            . 'softwareengineering1,problemsolving,database1,term,p_id)'
             . 'VALUES ("' . $_POST['marks1'] . '","' . $_POST['marks2'] . '",'
             . '"' . $_POST['marks3'] . '","' . $_POST['marks4'] . '",'
             . '"' . $_POST['marks5'] . '","' . $_POST['marks6'] . '"'

@@ -6,17 +6,16 @@
  * and open the template in the editor.
  */
 
-include 'connection.php';
+include '../connection.php';
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
-    $term = $_GET['term'];
     
-    $sql = "UPDATE examdata SET is_deleted=1 WHERE p_id=$id AND term=$term";
+    $sql = "UPDATE modules SET is_deleted=true WHERE id=$id";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
-
+    
     $_SESSION['message'] = "Record has been deleted successfully!";
-    $_SESSION['msg_type'] = "success";
+    $_SESSION['msg_type'] = "danger";
 
     header("location:index.php");
 }
