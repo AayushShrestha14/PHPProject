@@ -1,10 +1,9 @@
 <?php
-
-$server = 'dpg-chupqendvk4olis7bb20-a.oregon-postgres.render.com';
-$username = 'ayushman_4gdy_user';
-$password = 'O1ubae2EuCpNfyWbByDtdbNxTCpsiGdc';
-$schema = 'ayushman_4gdy';
-$port = '5432';
+$server = $_SERVER['SERVER_NAME'];
+$username = $_ENV['USERNAME'];
+$password = $_ENV['PASSWORD'];
+$schema = $_ENV['SCHEMA'];
+$port = $_ENV['PORT'];
 
 try {
     $conn = new PDO('pgsql:dbname=' . $schema . ';port=' . $port . '; host=' . $server, $username, $password);
