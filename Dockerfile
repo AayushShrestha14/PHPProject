@@ -9,6 +9,9 @@ WORKDIR /var/www/app
 # Copy application files
 COPY . .
 
+# Copy composer.json and composer.lock files
+COPY composer.json composer.lock ./
+
 # Install application dependencies
 RUN composer install
 
