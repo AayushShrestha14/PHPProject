@@ -1,19 +1,19 @@
-# Use the official PHP 8.2.0 image as the base
-FROM php:8.2.0-fpm-alpine
+FROM php:8.2-fpm-alpine
 
-# Set the working directory inside the container
-WORKDIR /app
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Copy the application files to the container
-COPY . /app
+# Set working directory
+WORKDIR /var/www/app
 
-# Install dependencies
-RUN apk add --no-cache \
-    # Add any necessary packages here, e.g., curl, zip, gd, etc.
-    && docker-php-ext-install <extension1> <extension2> ...
+# Copy application files
+COPY . .
 
-# Expose port 80 for web server
+# Install application dependencies
+RUN composer install
+
+# Expose port 80
 EXPOSE 80
 
-# Start the PHP-FPM server
+# Start PHP-FPM
 CMD ["php-fpm"]
