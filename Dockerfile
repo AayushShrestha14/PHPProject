@@ -1,19 +1,19 @@
-FROM composer:1.9.3 as vendor
+# Use the official PHP 8.2.0 image as the base
+FROM php:8.2.0-fpm-alpine
 
-WORKDIR /tmp/
+# Set the working directory inside the container
+WORKDIR /app
 
-COPY composer.json composer.json
-COPY composer.lock composer.lock
+# Copy the application files to the container
+COPY . /app
 
-RUN composer install \
-    --ignore-platform-reqs \
-    --no-interaction \
-    --no-plugins \
-    --no-scripts \
-    --prefer-dist
+# Install dependencies
+RUN apk add --no-cache \
+    # Add any necessary packages here, e.g., curl, zip, gd, etc.
+    && docker-php-ext-install <extension1> <extension2> ...
 
+# Expose port 80 for web server
+EXPOSE 80
 
-FROM php:7.2-apache-stretch
-
-COPY . /var/www/html
-COPY --from=vendor /tmp/vendor/ /var/www/html/vendor/
+# Start the PHP-FPM server
+CMD ["php-fpm"]
