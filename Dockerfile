@@ -1,22 +1,13 @@
-FROM php:8.2-fpm-alpine
+FROM php:7.4-fpm
 
-# Install Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN apt-get update && apt-get install -y \
+    libzip-dev \
+    unzip
 
-# Set working directory
-WORKDIR /var/www/app
+RUN docker-php-ext-install zip
 
-# Copy application files
+WORKDIR /var/www/html
+
 COPY . .
 
-# Install application dependencies
-RUN composer install
-
-# Copy composer.json and composer.lock files
-COPY composer.json composer.lock ./
-
-# Expose port 80
-EXPOSE 80
-
-# Start PHP-FPM
 CMD ["php-fpm"]
