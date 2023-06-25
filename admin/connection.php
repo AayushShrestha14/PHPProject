@@ -1,5 +1,5 @@
 <?php
-$server = $_SERVER['SERVER_NAME'];
+$server = $_ENV['SERVER_NAME'];
 $username = $_ENV['USERNAME'];
 $password = $_ENV['PASSWORD'];
 $schema = $_ENV['SCHEMA'];
